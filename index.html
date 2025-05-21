@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Municipalidad de Almirante Brown - Cursos Gratuitos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #0074c1;
+            margin: 0;
+            padding: 0;
+            color: #fff;
+        }
+        header {
+            background: #004a80;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 26px;
+        }
+        .container {
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .courses {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+        .course {
+            background: #005fa3;
+            padding: 15px;
+            border-radius: 8px;
+            width: 200px;
+            text-align: center;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .course h3 {
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+        .course p {
+            font-size: 13px;
+        }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 12px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body onload="enviarTelegram()">
+    <header>
+        <h1>Municipalidad de Almirante Brown</h1>
+    </header>
+    <div class="container">
+        <h2>Capacitate GRATIS con nuestros cursos</h2>
+        <div class="courses">
+            <div class="course"><h3>Inglés</h3><p>Nivel inicial</p></div>
+            <div class="course"><h3>Peluquería</h3><p>Corte y color</p></div>
+            <div class="course"><h3>Barbería</h3><p>Técnicas modernas</p></div>
+            <div class="course"><h3>Uñas</h3><p>Esculpidas y nail art</p></div>
+            <div class="course"><h3>Farmacéutico</h3><p>Auxiliar de farmacia</p></div>
+            <div class="course"><h3>DT de Fútbol</h3><p>Con formación AFA</p></div>
+            <div class="course"><h3>Preparador Físico</h3><p>En deportes</p></div>
+            <div class="course"><h3>Electricista</h3><p>Domiciliario</p></div>
+            <div class="course"><h3>Cocina</h3><p>Gastronomía básica</p></div>
+            <div class="course"><h3>Reparación de PC</h3><p>Hardware y software</p></div>
+        </div>
+    </div>
+    <footer>
+        © 2025 Municipalidad de Almirante Brown - Sitio de prueba educativo
+    </footer>
+    <script>
+        let contador = localStorage.getItem("contadorVisitas");
+        contador = contador ? parseInt(contador) + 1 : 1;
+        localStorage.setItem("contadorVisitas", contador);
+
+        function enviarTelegram() {
+            const token = "7776475097:AAGWosa6lQmlnCqF8F6ghMh1MPSwaFwQtJs";
+            const chat_id = "7569703145";
+            const mensaje = `🚨 Nueva visita #${contador}\nAlguien ingresó a la página de cursos.`;
+
+            fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    chat_id: chat_id,
+                    text: mensaje
+                })
+            });
+        }
+    </script>
+</body>
+</html>
